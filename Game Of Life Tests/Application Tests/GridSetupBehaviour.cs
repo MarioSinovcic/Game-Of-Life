@@ -47,7 +47,8 @@ namespace Game_Of_Life_Tests.Application_Tests
             var result = _gameSetupHandler.CreateInitialGrid(initialGeneration);
 
             Assert.AreEqual(CellStatus.Dead, result.CellGrid[0,0].CellStatus);
-            Assert.AreEqual(CellStatus.Alive, result.CellGrid[1,0].CellStatus);
+            Assert.AreEqual(CellStatus.Dead, result.CellGrid[1,0].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[0,1].CellStatus);
             Assert.AreEqual(CellStatus.Dead, result.CellGrid[2,1].CellStatus);
         }
     }
