@@ -14,10 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Domain Tests" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Game Of Life\Game Of Life.csproj" />
     </ItemGroup>
 

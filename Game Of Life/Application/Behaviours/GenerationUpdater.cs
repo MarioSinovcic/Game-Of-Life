@@ -1,3 +1,4 @@
+using System;
 using Game_Of_Life.Domain;
 
 namespace Game_Of_Life.Application.Behaviours
@@ -8,27 +9,26 @@ namespace Game_Of_Life.Application.Behaviours
         {
             var newGeneration = grid;
 
-            for (var i = 0; i < grid.Height; i++)
+            for (var i = 0; i < grid.Width; i++)
             {
-                for (var j = 0; j < grid.Width; j++)
+                for (var j = 0; j < grid.Height; j++)
                 {
-                    newGeneration = CheckUnderpopulationRule(grid, grid.CellGrid[i,j]);
+                    newGeneration = CheckUnderpopulationRule(grid, grid.CellGrid[j,i], j, i);
                 }
             }
-            
             return newGeneration;
         }
         
         //Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
-        private Grid CheckUnderpopulationRule(Grid grid, Cell cell)
+        private Grid CheckUnderpopulationRule(Grid grid, Cell cell, int y, int x)
         {
             if (cell.CellStatus.Equals(CellStatus.Dead))
             {
                 return grid;
             }
-            if (grid.GetAliveNeighbours(cell) < 2)
+            if (grid.GetAliveNeighbours(y, x) < 2)
             {
-                grid.CellGrid[cell.X, cell.Y].FlipCellStatus();
+                grid.CellGrid[y, x].FlipCellStatus();
             }
             return grid;
         }

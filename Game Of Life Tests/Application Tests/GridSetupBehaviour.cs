@@ -27,8 +27,8 @@ namespace Game_Of_Life_Tests.Application_Tests
         {
             var result = _gameSetupHandler.CreateInitialGrid(initialGenerations);
 
-            Assert.AreEqual(initialGenerations.GetLength(0), result.Width);
-            Assert.AreEqual(initialGenerations.GetLength(1), result.Height);
+            Assert.AreEqual(initialGenerations.GetLength(1), result.Width);
+            Assert.AreEqual(initialGenerations.GetLength(0), result.Height);
         }
         
         [TestCaseSource(nameof(InitialGenerations))]

@@ -42,12 +42,12 @@ namespace Game_Of_Life_Tests.Application_Tests.GameOfLifeRules
         [Test]
         public void ShouldKillSingleLiveCellOnLargeBoard()
         {
-            var initialGeneration = new[,] {{"o", "o", "o", "o", "o"}, {"o", "o", "x", "o", "o"}, {"o", "o", "o", "o", "o"}};
+            var initialGeneration = new[,] {{"x", "x", "o", "o", "o"}, {"o", "o", "o", "o", "o"}, {"x", "o", "o", "o", "x"}};
             var grid = _gameSetupHandler.CreateInitialGrid(initialGeneration);
             var result = _generationUpdater.CreateNewGeneration(grid);
 
-            Assert.AreEqual(CellStatus.Dead, result.CellGrid[3,2].CellStatus);
-            Assert.AreEqual(CellStatus.Dead, result.CellGrid[2,2].CellStatus);
+            Assert.AreEqual(CellStatus.Dead, result.CellGrid[1,4].CellStatus);
+            Assert.AreEqual(CellStatus.Dead, result.CellGrid[1,2].CellStatus);
         }
         
         [Test]
@@ -57,8 +57,8 @@ namespace Game_Of_Life_Tests.Application_Tests.GameOfLifeRules
             var grid = _gameSetupHandler.CreateInitialGrid(initialGeneration);
             var result = _generationUpdater.CreateNewGeneration(grid);
 
-            Assert.AreEqual(CellStatus.Dead, result.CellGrid[4,4].CellStatus);
             Assert.AreEqual(CellStatus.Dead, result.CellGrid[2,2].CellStatus);
+            Assert.AreEqual(CellStatus.Dead, result.CellGrid[2,4].CellStatus);
         }
     }
 }

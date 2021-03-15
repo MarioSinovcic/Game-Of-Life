@@ -17,11 +17,11 @@ namespace Game_Of_Life.Application.Behaviours
                 for (var j = 0; j < gridHeight; j++)
                 {
                     var cellStatus = GetCellStatus(firstGeneration[j,i]);
-                    cellGrid[j,i] = new Cell(i,j,cellStatus);
+                    cellGrid[j,i] = new Cell(cellStatus);
                 }
             }
             
-            return new Grid(gridWidth, gridHeight, cellGrid);
+            return new Grid(gridHeight, gridWidth, cellGrid);
         }
 
         private CellStatus GetCellStatus(string value)

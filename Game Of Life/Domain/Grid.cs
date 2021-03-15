@@ -1,3 +1,5 @@
+using System.Runtime.Intrinsics.X86;
+
 namespace Game_Of_Life.Domain
 {
     public class Grid
@@ -13,10 +15,10 @@ namespace Game_Of_Life.Domain
 
         public Cell[,] CellGrid { get; set; }
 
-        public int GetAliveNeighbours(Cell cell)
+        public int GetAliveNeighbours(int y, int x)
         {
             var aliveNeighbours = 0;
-            if (cell.CellStatus.Equals(CellStatus.Alive))
+            if (CellGrid[y,x].CellStatus.Equals(CellStatus.Alive))
             {
                 aliveNeighbours--;
             }
@@ -25,9 +27,9 @@ namespace Game_Of_Life.Domain
             {
                 for (var j = -1; j < 2; j++)
                 {
-                    var X = (cell.X + i + Width) % Width;
-                    var Y = (cell.Y + j + Height) % Height;
-                    if (CellGrid[X,Y].CellStatus.Equals(CellStatus.Alive))
+                    var X = (x + i + Width) % Width;
+                    var Y = (y + j + Height) % Height;
+                    if (CellGrid[Y,X].CellStatus.Equals(CellStatus.Alive))
                     {
                         aliveNeighbours++;
                     }
