@@ -12,9 +12,9 @@ namespace Game_Of_Life.Application.Behaviours
 
             var cellGrid = new Cell[gridWidth,gridHeight];
             
-            for (int i = 0; i < gridWidth; i++)
+            for (var i = 0; i < gridWidth; i++)
             {
-                for (int j = 0; j < gridHeight; j++)
+                for (var j = 0; j < gridHeight; j++)
                 {
                     var cellStatus = getCellStatus(firstGeneration[i,j]);
                     cellGrid[i,j] = new Cell(i,j,cellStatus);

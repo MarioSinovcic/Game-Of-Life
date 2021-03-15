@@ -1,4 +1,3 @@
-using System;
 using Game_Of_Life.Application.Behaviours;
 using Game_Of_Life.Application.Interfaces;
 using Game_Of_Life.Domain;
@@ -9,8 +8,6 @@ namespace Game_Of_Life_Tests.Application_Tests
     public class Board
     {
         private IGameSetup _gameSetupHandler;
-        
-        
         private static readonly object[] InitialGenerations = 
         {
             new [,]{{"o"}, {"x"}, {"o"}},  //case 1
@@ -18,7 +15,6 @@ namespace Game_Of_Life_Tests.Application_Tests
             new [,]{{"o", "o", "o"}, {null, null, null}, {"o", "o", "o"}},   //case 3
             new [,]{{"o", "o", "o", "x"}, {"o", "o", "o", "x"}, {"o", "o", "i", ""}}   //case 4
         }; 
-        
         
         [SetUp]
         public void Setup()

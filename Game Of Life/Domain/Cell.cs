@@ -14,5 +14,15 @@ namespace Game_Of_Life.Domain
 
         public int[] Coordinates => new[] { X, Y };
         public CellStatus CellStatus { get; set; }
+
+        public void FlipCellStatus()
+        {
+            CellStatus = CellStatus switch
+            {
+                CellStatus.Alive => CellStatus.Dead,
+                CellStatus.Dead => CellStatus.Alive,
+                _ => CellStatus
+            };
+        }
     }
 }
