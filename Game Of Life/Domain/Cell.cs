@@ -2,17 +2,18 @@ namespace Game_Of_Life.Domain
 {
     public class Cell
     {
-        public Cell(int x, int y, CellStatus cellStatus)
+        public Cell(int y, int x, CellStatus cellStatus)
         {
-            X = x;
             Y = y;
+            X = x;
             CellStatus = cellStatus;
         }
         
-        public int X { get; protected set; }
         public int Y { get; protected set; }
+        
+        public int X { get; protected set; }
 
-        public int[] Coordinates => new[] { X, Y };
+        public int[] Coordinates => new[] { Y, X };
         public CellStatus CellStatus { get; set; }
 
         public void FlipCellStatus()
