@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Game_Of_Life_Tests.Application_Tests.GameOfLifeRules
 {
-    public class OverpopulationRuleTests
+    public class RevivalRuleTests
     {
         private GenerationUpdater _generationUpdater;
         private IGameSetup _gameSetupHandler;
@@ -16,45 +16,45 @@ namespace Game_Of_Life_Tests.Application_Tests.GameOfLifeRules
             _generationUpdater = new GenerationUpdater();
             _gameSetupHandler = new GameSetupHandler();
         }
-        
+
         [Test]
-        public void ShouldKillLiveCellWithFourNeighbours()
+        public void ShouldReviveSingleLiveCellWithThreeNeighbours()
         {
-            var initialGeneration = new[,] {{"o", "x", "o"}, {"o", "x", "x"}, {"x", "x", "x"}};
+            var initialGeneration = new[,] {{"x", "o", "o"}, {"o", "x", "o"}, {"x", "o", "o"}};
             var grid = _gameSetupHandler.CreateInitialGrid(initialGeneration);
             var result = _generationUpdater.CreateNewGeneration(grid);
-            
-            Assert.AreEqual(CellStatus.Dead, result.CellGrid[0,1].CellStatus);
+
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[1, 0].CellStatus);
         }
         
         [Test]
-        public void ShouldKillLiveCellWithDirectNeighbours()
+        public void ShouldReviveSingleLiveCellWithThreeNeighboursOnTheEdge()
         {
-            var initialGeneration = new[,] {{"o", "x", "o"}, {"x", "x", "x"}, {"o", "x", "o"}};
+            var initialGeneration = new[,] {{"o", "x", "o"}, {"o", "o", "o"}, {"x", "o", "x"}};
             var grid = _gameSetupHandler.CreateInitialGrid(initialGeneration);
             var result = _generationUpdater.CreateNewGeneration(grid);
-            
-            Assert.AreEqual(CellStatus.Dead, result.CellGrid[1,1].CellStatus);
+
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[2, 1].CellStatus);
         }
         
         [Test]
-        public void ShouldNotKillLiveCellWithThreeNeighbours()
+        public void ShouldNotReviveSingleLiveCellWithTwoNeighboursOnTheEdge()
         {
-            var initialGeneration = new[,] {{"x", "x", "o"}, {"o", "o", "x"}, {"o", "x", "o"}};
+            var initialGeneration = new[,] {{"o", "x", "o"}, {"o", "o", "o"}, {"o", "o", "x"}};
             var grid = _gameSetupHandler.CreateInitialGrid(initialGeneration);
             var result = _generationUpdater.CreateNewGeneration(grid);
-            
-            Assert.AreEqual(CellStatus.Alive, result.CellGrid[0,1].CellStatus);
+
+            Assert.AreEqual(CellStatus.Dead, result.CellGrid[2, 1].CellStatus);
         }
         
         [Test]
-        public void ShouldNotKillLiveCellWithTwoNeighbours()
+        public void ShouldNotReviveSingleLiveCellWithFourNeighboursOnTheEdge()
         {
-            var initialGeneration = new[,] {{"o", "x", "o"}, {"o", "o", "x"}, {"o", "x", "o"}};
+            var initialGeneration = new[,] {{"o", "x", "x"}, {"o", "o", "o"}, {"x", "o", "x"}};
             var grid = _gameSetupHandler.CreateInitialGrid(initialGeneration);
             var result = _generationUpdater.CreateNewGeneration(grid);
-            
-            Assert.AreEqual(CellStatus.Alive, result.CellGrid[2,1].CellStatus);
+
+            Assert.AreEqual(CellStatus.Dead, result.CellGrid[2, 1].CellStatus);
         }
     }
 }

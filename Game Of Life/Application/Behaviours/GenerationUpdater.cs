@@ -18,20 +18,22 @@ namespace Game_Of_Life.Application.Behaviours
             return newGeneration;
         }
         
-        //Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
         private CellStatus CheckUnderpopulationRule(Grid grid, int y, int x)
         {
             var currentCell = grid.CellGrid[y, x];
             var aliveNeighbours = grid.GetAliveNeighbours(y,x);
 
-            if (currentCell.CellStatus.Equals(CellStatus.Alive))
+            switch (currentCell.CellStatus)
             {
-                if (aliveNeighbours < 2 || aliveNeighbours > 3)
-                {
+                case CellStatus.Alive when aliveNeighbours < 2 || aliveNeighbours > 3:
                     return grid.CellGrid[y, x].FlippedCellStatus();
-                }
+                case CellStatus.Alive:
+                    return grid.CellGrid[y, x].CellStatus;
+                case CellStatus.Dead when aliveNeighbours == 3:
+                    return grid.CellGrid[y, x].FlippedCellStatus();
+                default:
+                    return grid.CellGrid[y, x].CellStatus;
             }
-            return grid.CellGrid[y, x].CellStatus;
         }
     }
 }
