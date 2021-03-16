@@ -1,4 +1,3 @@
-using System;
 using Game_Of_Life.Domain;
 
 namespace Game_Of_Life.Application.Behaviours
@@ -7,30 +6,32 @@ namespace Game_Of_Life.Application.Behaviours
     {
         public Grid CreateNewGeneration(Grid grid)
         {
-            var newGeneration = grid;
+            var newGeneration = new Grid(grid.Height, grid.Width);
 
             for (var i = 0; i < grid.Width; i++)
             {
                 for (var j = 0; j < grid.Height; j++)
                 {
-                    newGeneration = CheckUnderpopulationRule(grid, grid.CellGrid[j,i], j, i);
+                    newGeneration.CellGrid[j,i].CellStatus = CheckUnderpopulationRule(grid, j, i);
                 }
             }
             return newGeneration;
         }
         
         //Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
-        private Grid CheckUnderpopulationRule(Grid grid, Cell cell, int y, int x)
+        private CellStatus CheckUnderpopulationRule(Grid grid, int y, int x)
         {
-            if (cell.CellStatus.Equals(CellStatus.Dead))
+            var currentCell = grid.CellGrid[y, x];
+            var aliveNeighbours = grid.GetAliveNeighbours(y,x);
+
+            if (currentCell.CellStatus.Equals(CellStatus.Alive))
             {
-                return grid;
+                if (aliveNeighbours < 2 || aliveNeighbours > 3)
+                {
+                    return grid.CellGrid[y, x].FlippedCellStatus();
+                }
             }
-            if (grid.GetAliveNeighbours(y, x) < 2)
-            {
-                grid.CellGrid[y, x].FlipCellStatus();
-            }
-            return grid;
+            return grid.CellGrid[y, x].CellStatus;
         }
     }
 }

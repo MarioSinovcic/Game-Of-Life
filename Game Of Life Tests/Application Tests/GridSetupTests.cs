@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Game_Of_Life_Tests.Application_Tests
 {
-    public class GridSetupBehaviour
+    public class GridSetupTests
     {
         private IGameSetup _gameSetupHandler;
         private static readonly object[] InitialGenerations = 
@@ -52,7 +52,24 @@ namespace Game_Of_Life_Tests.Application_Tests
             Assert.AreEqual(CellStatus.Alive, result.CellGrid[1,2].CellStatus);
             Assert.AreEqual(CellStatus.Dead, result.CellGrid[2,1].CellStatus);
         }
-        
+
+        [Test]
+        public void ShouldCreateAGridWithAllCellStatusesAlive()
+        {
+            var initialGeneration = new[,] {{"x", "x", "x"}, {"x", "x", "x"}, {"x", "x", "x"}};
+            var result = _gameSetupHandler.CreateInitialGrid(initialGeneration);
+
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[0, 0].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[0, 1].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[0, 2].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[1, 0].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[1, 1].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[1, 2].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[2, 0].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[2, 1].CellStatus);
+            Assert.AreEqual(CellStatus.Alive, result.CellGrid[2, 2].CellStatus);
+        }
+
         [Test]
         public void ShouldCreateAGridWithTheAccurateCellStatusesOnUnevenYAxisBoard()
         {

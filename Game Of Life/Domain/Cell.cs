@@ -9,9 +9,9 @@ namespace Game_Of_Life.Domain
         
         public CellStatus CellStatus { get; set; }
 
-        public void FlipCellStatus()
+        public CellStatus FlippedCellStatus()
         {
-            CellStatus = CellStatus switch
+            return CellStatus switch
             {
                 CellStatus.Alive => CellStatus.Dead,
                 CellStatus.Dead => CellStatus.Alive,

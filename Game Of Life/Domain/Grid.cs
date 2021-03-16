@@ -10,6 +10,21 @@ namespace Game_Of_Life.Domain
             Width = width;
             CellGrid = cellGrid;
         }
+
+        public Grid(int height, int width)
+        {
+            Height = height;
+            Width = width;
+            CellGrid = new Cell[height,width];
+            for (var i = 0; i < width; i++)
+            {
+                for (var j = 0; j < height; j++)
+                {
+                    CellGrid[j,i] = new Cell(CellStatus.Dead);
+                }
+            }
+        }
+
         public int Height { get; protected set; }
         public int Width { get; protected set; }
 

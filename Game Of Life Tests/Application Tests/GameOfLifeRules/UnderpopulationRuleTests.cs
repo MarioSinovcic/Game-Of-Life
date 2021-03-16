@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Game_Of_Life_Tests.Application_Tests.GameOfLifeRules
 {
-    public class GameOfLifeRuleBehaviour
+    public class UnderpopulationRuleTests
     {
         private GenerationUpdater _generationUpdater;
         private IGameSetup _gameSetupHandler;

@@ -24,6 +24,16 @@ namespace Game_Of_Life_Tests.Domain_Tests
         }
         
         [Test]
+        public void ShouldCountNeighboursCorrectlyForASmallGridWithFourNeighbours()
+        {
+            var initialGeneration = new[,] {{"o", "x", "o"}, {"x", "x", "x"}, {"o", "x", "o"}};
+            var grid = _gameSetupHandler.CreateInitialGrid(initialGeneration);
+
+            Assert.AreEqual(grid.GetAliveNeighbours(0 ,1), 4);
+        }
+
+        
+        [Test]
         public void ShouldCountNeighboursCorrectlyForASmallGridWithOneNeighbour()
         {
             var initialGeneration = new[,] {{"o", "o", "o"}, {"o", "x", "x"}, {"o", "o", "o"}};
