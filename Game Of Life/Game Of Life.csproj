@@ -6,8 +6,4 @@
         <RootNamespace>Game_Of_Life</RootNamespace>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Adapters" />
-    </ItemGroup>
-
 </Project>
