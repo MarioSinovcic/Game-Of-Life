@@ -1,17 +1,17 @@
 using System;
-using System.Linq;
 using System.Threading;
 using Game_Of_Life.Domain;
+using Game_Of_Life.Domain.Enums;
 
 namespace Game_Of_Life.Adapters
 {
     public class ConsoleOutPutHandler : IOutputHandler
     {
-        private const int MillisecondsTimeout = 200;
+        private const int MillisecondsTimeout = 100;
         
         private const string AliveCell = "X";
-        private const string DeadCell = "·";
-        private const string Separator = "·";
+        private const string DeadCell = " ";
+        private const string Separator = " ";
         private const string GenerationDivider = "+";
         
         public void DisplayGrid(Grid grid)

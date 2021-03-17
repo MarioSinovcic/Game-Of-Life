@@ -32,9 +32,8 @@ namespace Game_Of_Life.Port
                     {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
                     {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}});
             }
-            
-            var newGeneration = new Grid(grid.Height, grid.Width);
-            newGeneration = _generationUpdater.CreateNewGeneration(grid);
+
+            var newGeneration = _generationUpdater.CreateNewGeneration(grid);
             return newGeneration;
         }
     }

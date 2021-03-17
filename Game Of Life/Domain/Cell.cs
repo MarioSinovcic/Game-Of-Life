@@ -1,3 +1,5 @@
+using Game_Of_Life.Domain.Enums;
+
 namespace Game_Of_Life.Domain
 {
     public class Cell

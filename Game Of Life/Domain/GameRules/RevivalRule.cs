@@ -1,3 +1,4 @@
+using Game_Of_Life.Domain.Enums;
 using Game_Of_Life.Domain.Interfaces;
 
 namespace Game_Of_Life.Domain.GameRules

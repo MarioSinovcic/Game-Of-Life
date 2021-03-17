@@ -7,7 +7,7 @@ using Game_Of_Life.Port;
 
 namespace Game_Of_Life
 {
-    class Program //TODO: implement random setup generator, integration tests (multiple generations)
+    internal static class Program //TODO: implement random setup generator, integration tests (multiple generations)
     {
         private static void Main()
         {

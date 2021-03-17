@@ -1,4 +1,4 @@
-using System.Runtime.Intrinsics.X86;
+using Game_Of_Life.Domain.Enums;
 
 namespace Game_Of_Life.Domain
 {

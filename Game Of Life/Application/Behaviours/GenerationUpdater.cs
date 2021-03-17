@@ -1,12 +1,13 @@
 using System.Linq;
 using Game_Of_Life.Domain;
+using Game_Of_Life.Domain.Enums;
 using Game_Of_Life.Domain.Interfaces;
 
 namespace Game_Of_Life.Application.Behaviours
 {
     public class GenerationUpdater
     {
-        private readonly IRuleFactory _ruleFactory; //should be injected
+        private readonly IRuleFactory _ruleFactory;
 
         public GenerationUpdater(IRuleFactory ruleFactory)
         {
@@ -22,7 +23,6 @@ namespace Game_Of_Life.Application.Behaviours
                 for (var j = 0; j < grid.Height; j++)
                 {
                     newGeneration.CellGrid[j, i].CellStatus = EvaluateRules(grid, j, i);
-                    //newGeneration.CellGrid[j, i].CellStatus = CheckUnderpopulationRule(grid, j, i);
                 }
             }
             return newGeneration;
