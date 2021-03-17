@@ -13,7 +13,8 @@ namespace Game_Of_Life_Tests.Application_Tests.GameOfLifeRules
         [SetUp]
         public void Setup()
         { 
-            _generationUpdater = new GenerationUpdater();
+            var classicRuleFactory = new ClassicRuleFactory();
+            _generationUpdater = new GenerationUpdater(classicRuleFactory);
             _gameSetupHandler = new GameSetupHandler();
         }
 

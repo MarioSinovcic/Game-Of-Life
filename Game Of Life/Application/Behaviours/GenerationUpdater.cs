@@ -1,9 +1,18 @@
+using System.Linq;
 using Game_Of_Life.Domain;
+using Game_Of_Life.Domain.Interfaces;
 
 namespace Game_Of_Life.Application.Behaviours
 {
     public class GenerationUpdater
     {
+        private readonly IRuleFactory _ruleFactory; //should be injected
+
+        public GenerationUpdater(IRuleFactory ruleFactory)
+        {
+            _ruleFactory = ruleFactory;
+        }
+
         public Grid CreateNewGeneration(Grid grid)
         {
             var newGeneration = new Grid(grid.Height, grid.Width);
@@ -12,28 +21,22 @@ namespace Game_Of_Life.Application.Behaviours
             {
                 for (var j = 0; j < grid.Height; j++)
                 {
-                    newGeneration.CellGrid[j,i].CellStatus = CheckUnderpopulationRule(grid, j, i);
+                    newGeneration.CellGrid[j, i].CellStatus = EvaluateRules(grid, j, i);
+                    //newGeneration.CellGrid[j, i].CellStatus = CheckUnderpopulationRule(grid, j, i);
                 }
             }
             return newGeneration;
         }
-        
-        private CellStatus CheckUnderpopulationRule(Grid grid, int y, int x)
-        {
-            var currentCell = grid.CellGrid[y, x];
-            var aliveNeighbours = grid.GetAliveNeighbours(y,x);
 
-            switch (currentCell.CellStatus)
+        private CellStatus EvaluateRules(Grid grid, int y, int x)
+        {
+            var rules = _ruleFactory.GetRules();
+
+            if (rules.Any(rule => rule.EvaluateRule(grid, y, x)))
             {
-                case CellStatus.Alive when aliveNeighbours < 2 || aliveNeighbours > 3:
-                    return grid.CellGrid[y, x].FlippedCellStatus();
-                case CellStatus.Alive:
-                    return grid.CellGrid[y, x].CellStatus;
-                case CellStatus.Dead when aliveNeighbours == 3:
-                    return grid.CellGrid[y, x].FlippedCellStatus();
-                default:
-                    return grid.CellGrid[y, x].CellStatus;
+                return grid.CellGrid[y, x].FlippedCellStatus();
             }
+            return grid.CellGrid[y, x].CellStatus;
         }
     }
 }
