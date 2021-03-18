@@ -16,7 +16,7 @@ namespace Game_Of_Life_Tests.Application_Tests.GameOfLifeRules
         { 
             var classicRuleFactory = new ClassicRuleFactory();
             _generationUpdater = new GenerationUpdater(classicRuleFactory);
-            _gameSetupHandler = new GameSetupHandler();
+            _gameSetupHandler = new StringArrayGameSetupHandler();
         }
 
         [Test]

@@ -7,7 +7,7 @@ namespace Game_Of_Life.Adapters
 {
     public class ConsoleOutPutHandler : IOutputHandler
     {
-        private const int MillisecondsTimeout = 100;
+        private const int MillisecondsTimeout = 400;
         
         private const string AliveCell = "X";
         private const string DeadCell = " ";

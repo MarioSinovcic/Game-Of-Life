@@ -11,7 +11,7 @@ namespace Game_Of_Life_Tests.Domain_Tests
         [SetUp]
         public void Setup()
         { 
-            _gameSetupHandler = new GameSetupHandler();
+            _gameSetupHandler = new StringArrayGameSetupHandler();
         }
 
         [Test]

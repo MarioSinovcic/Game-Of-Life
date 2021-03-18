@@ -4,7 +4,7 @@ using Game_Of_Life.Domain.Enums;
 
 namespace Game_Of_Life.Application.Behaviours
 {
-    public class GameSetupHandler : IGameSetup
+    public class StringArrayGameSetupHandler : IGameSetup
     {
         public Grid CreateInitialGrid(string [,] firstGeneration)
         {

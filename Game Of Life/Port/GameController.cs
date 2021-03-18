@@ -16,23 +16,23 @@ namespace Game_Of_Life.Port
             _generationUpdater = new GenerationUpdater(ruleFactory);
         }
 
+        public Grid SetupGame()
+        {
+            return _gameSetupHandler.CreateInitialGrid(new[,] {
+                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
+                {"o", "o", "o", "o", "o", "o", "x", "o", "o", "o"}, 
+                {"o", "o", "o", "o", "x", "o", "o", "o", "x", "o"}, 
+                {"o", "o", "o", "x", "o", "o", "o", "o", "o", "o"}, 
+                {"o", "o", "o", "x", "o", "o", "o", "o", "x", "o"}, 
+                {"o", "o", "o", "x", "x", "x", "x", "x", "o", "o"}, 
+                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
+                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
+                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
+                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}});
+        }
+
         public Grid IterateGame(Grid grid)
         {
-            if (grid is null)
-            {
-                return _gameSetupHandler.CreateInitialGrid(new[,] {
-                    {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
-                    {"o", "o", "o", "o", "o", "o", "x", "o", "o", "o"}, 
-                    {"o", "o", "o", "o", "x", "o", "o", "o", "x", "o"}, 
-                    {"o", "o", "o", "x", "o", "o", "o", "o", "o", "o"}, 
-                    {"o", "o", "o", "x", "o", "o", "o", "o", "x", "o"}, 
-                    {"o", "o", "o", "x", "x", "x", "x", "x", "o", "o"}, 
-                    {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
-                    {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
-                    {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
-                    {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}});
-            }
-
             var newGeneration = _generationUpdater.CreateNewGeneration(grid);
             return newGeneration;
         }

@@ -1,12 +1,11 @@
 using Game_Of_Life.Application.Behaviours;
 using Game_Of_Life.Application.Interfaces;
-using Game_Of_Life.Domain;
 using Game_Of_Life.Domain.Enums;
 using NUnit.Framework;
 
 namespace Game_Of_Life_Tests.Application_Tests
 {
-    public class GridSetupTests
+    public class InputBasedGridSetupTests
     {
         private IGameSetup _gameSetupHandler;
         private static readonly object[] InitialGenerations = 
@@ -20,9 +19,9 @@ namespace Game_Of_Life_Tests.Application_Tests
         [SetUp]
         public void Setup()
         { 
-            _gameSetupHandler = new GameSetupHandler();
+            _gameSetupHandler = new StringArrayGameSetupHandler();
         }
-
+        
         [TestCaseSource(nameof(InitialGenerations))]
         public void ShouldCreateAGridWithTheCorrectDimensions(string[,] initialGenerations)
         {
