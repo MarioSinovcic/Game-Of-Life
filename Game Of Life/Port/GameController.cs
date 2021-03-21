@@ -1,5 +1,5 @@
 using Game_Of_Life.Application.Behaviours;
-using Game_Of_Life.Application.Interfaces;
+using Game_Of_Life.Application.Behaviours.Setup;
 using Game_Of_Life.Domain;
 using Game_Of_Life.Domain.Interfaces;
 
@@ -7,10 +7,10 @@ namespace Game_Of_Life.Port
 {
     public class GameController
     {
-        private readonly IGameSetup _gameSetupHandler;
+        private readonly GameSetupFactory _gameSetupHandler;
         private readonly GenerationUpdater _generationUpdater;
         
-        public GameController(IGameSetup gameSetupHandler, IRuleFactory ruleFactory)
+        public GameController(GameSetupFactory gameSetupHandler, IRuleFactory ruleFactory)
         {
             _gameSetupHandler = gameSetupHandler;
             _generationUpdater = new GenerationUpdater(ruleFactory);
@@ -18,17 +18,7 @@ namespace Game_Of_Life.Port
 
         public Grid SetupGame()
         {
-            return _gameSetupHandler.CreateInitialGrid(new[,] {
-                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
-                {"o", "o", "o", "o", "o", "o", "x", "o", "o", "o"}, 
-                {"o", "o", "o", "o", "x", "o", "o", "o", "x", "o"}, 
-                {"o", "o", "o", "x", "o", "o", "o", "o", "o", "o"}, 
-                {"o", "o", "o", "x", "o", "o", "o", "o", "x", "o"}, 
-                {"o", "o", "o", "x", "x", "x", "x", "x", "o", "o"}, 
-                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
-                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
-                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}, 
-                {"o", "o", "o", "o", "o", "o", "o", "o", "o", "o"}});
+            return _gameSetupHandler.GenerateInitialGrid(null);
         }
 
         public Grid IterateGame(Grid grid)

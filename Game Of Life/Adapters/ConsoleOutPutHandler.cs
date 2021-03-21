@@ -7,10 +7,10 @@ namespace Game_Of_Life.Adapters
 {
     public class ConsoleOutPutHandler : IOutputHandler
     {
-        private const int MillisecondsTimeout = 400;
+        private const int MillisecondsTimeout = 200;
         
-        private const string AliveCell = "X";
-        private const string DeadCell = " ";
+        private const string AliveCell = "👾";
+        private const string DeadCell = "";
         private const string Separator = " ";
         private const string GenerationDivider = "+";
         

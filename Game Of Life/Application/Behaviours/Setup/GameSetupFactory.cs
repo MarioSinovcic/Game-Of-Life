@@ -1,20 +1,23 @@
 using Game_Of_Life.Domain;
 
-namespace Game_Of_Life.Application.Behaviours
+namespace Game_Of_Life.Application.Behaviours.Setup
 {
-    public static class GameSetupFactory
+    public class GameSetupFactory
     {
         private static readonly StringArrayGameSetupHandler StringArrayGameSetupHandler = new StringArrayGameSetupHandler();
         private static readonly RandomGameSetupHandler RandomGameSetupHandler = new RandomGameSetupHandler();
 
-        public static Grid SetupGame(string [,] initBoard)
+        public Grid GenerateInitialGrid(string args)
         {
-            return StringArrayGameSetupHandler.CreateInitialGrid(initBoard);
-        }
-        
-        public static Grid SetupGame()
-        {
-            return RandomGameSetupHandler.CreateInitialGrid();
+            if (string.IsNullOrEmpty(args))
+            {
+                return RandomGameSetupHandler.CreateInitialGrid();
+            }
+            else
+            {
+                var initialGeneration = new[,] {{"o", "x", "o"}, {"o", "x", "x"}, {"x", "x", "x"}}; //replace with pathname reading
+                return StringArrayGameSetupHandler.CreateInitialGrid(initialGeneration);
+            }
         }
     }
 }
