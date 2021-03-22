@@ -1,6 +1,4 @@
-using Game_Of_Life.Application.Behaviours;
 using Game_Of_Life.Application.Behaviours.Setup;
-using Game_Of_Life.Application.Interfaces;
 using Game_Of_Life.Domain.Enums;
 using NUnit.Framework;
 
@@ -27,9 +25,23 @@ namespace Game_Of_Life_Tests.Application_Tests
         [Test]
         public void ShouldCreateGridIfInputPathInputIsGiven()
         {
-            var result = _gameSetupFactory.GenerateInitialGrid("inputPath"); //create dummy file
+            var inputPaths = new[] {"/Users/mario.sinovcic/Documents/Acceleration/Katas/Game Of Life/Game Of Life/Game Of Life Tests/TestData/TestData1.json"};
+            var result = _gameSetupFactory.GenerateInitialGrid(inputPaths);
 
-            Assert.AreNotEqual(null, result.CellGrid[0,0]);
+            var s = "k";
+
+            Assert.AreEqual(result.CellGrid[0,0].CellStatus, CellStatus.Alive);
+            Assert.AreEqual(result.CellGrid[0,1].CellStatus, CellStatus.Dead);
+        }
+        
+        [Test]
+        public void ShouldRandomGridByDefault()
+        {
+            var inputPaths = new string[] { };
+            
+            var result = _gameSetupFactory.GenerateInitialGrid(inputPaths);
+
+            Assert.IsNotNull(result.CellGrid[0,0]);
         }
     }
 }

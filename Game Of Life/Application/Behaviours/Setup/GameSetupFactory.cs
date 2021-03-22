@@ -1,22 +1,26 @@
+using System;
 using Game_Of_Life.Domain;
 
 namespace Game_Of_Life.Application.Behaviours.Setup
 {
     public class GameSetupFactory
     {
-        private static readonly StringArrayGameSetupHandler StringArrayGameSetupHandler = new StringArrayGameSetupHandler();
+        private static readonly PathNameGameSetupHandler PathNameGameSetupHandler = new PathNameGameSetupHandler();
         private static readonly RandomGameSetupHandler RandomGameSetupHandler = new RandomGameSetupHandler();
 
-        public Grid GenerateInitialGrid(string args)
+        public Grid GenerateInitialGrid(string[] args)
         {
-            if (string.IsNullOrEmpty(args))
+            try
+            {
+                if (args is null || string.IsNullOrEmpty(args[0]))
+                {
+                    return RandomGameSetupHandler.CreateInitialGrid();
+                }
+                return PathNameGameSetupHandler.CreateInitialGrid(args[0]);
+            }
+            catch (IndexOutOfRangeException)
             {
                 return RandomGameSetupHandler.CreateInitialGrid();
-            }
-            else
-            {
-                var initialGeneration = new[,] {{"o", "x", "o"}, {"o", "x", "x"}, {"x", "x", "x"}}; //replace with pathname reading
-                return StringArrayGameSetupHandler.CreateInitialGrid(initialGeneration);
             }
         }
     }

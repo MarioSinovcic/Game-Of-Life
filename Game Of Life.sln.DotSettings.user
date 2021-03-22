@@ -6,9 +6,15 @@
     &lt;TestId&gt;NUnit3x::2B7EF08A-BC8B-4AE0-A0A9-D522FC3ABB13::.NETCoreApp,Version=v5.0::Game_Of_Life_Tests.Domain_Tests.CountingNeighboursTests.ShouldCountNeighboursCorrectlyForASmallGridWithFourNeighbours&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=45be5906_002D3e38_002D4ed7_002D832e_002D0fa0d7db7c57/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ShouldCreateGridIfInputPathInputIsGiven" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/mario.sinovcic/Documents/Acceleration/Katas/Game Of Life/Game Of Life/Game Of Life Tests" Presentation="&amp;lt;Game Of Life Tests&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6f602823_002Dbea0_002D4f7b_002D846b_002D8665c2327386/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ShouldCreateAGridWithALLCellStatusesAlive" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/mario.sinovcic/Documents/Acceleration/Katas/Game Of Life/Game Of Life/Game Of Life Tests" Presentation="&amp;lt;Game Of Life Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bd4c453b_002D2d6c_002D4b05_002Da5c0_002Deea2fbcc9fd2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ShouldCreateAGridWithTheAccurateCellStatuses2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bd4c453b_002D2d6c_002D4b05_002Da5c0_002Deea2fbcc9fd2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ShouldCreateAGridWithTheAccurateCellStatuses2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/mario.sinovcic/Documents/Acceleration/Katas/Game Of Life/Game Of Life/Game Of Life Tests" Presentation="&amp;lt;Game Of Life Tests&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d9ba94d1_002D6a33_002D4d8e_002Dab43_002D8caad63557fd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AlternateGridSetupTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/mario.sinovcic/Documents/Acceleration/Katas/Game Of Life/Game Of Life/Game Of Life Tests" Presentation="&amp;lt;Game Of Life Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

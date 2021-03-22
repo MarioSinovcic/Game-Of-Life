@@ -16,9 +16,9 @@ namespace Game_Of_Life.Port
             _generationUpdater = new GenerationUpdater(ruleFactory);
         }
 
-        public Grid SetupGame()
+        public Grid SetupGame(string[] args)
         {
-            return _gameSetupHandler.GenerateInitialGrid(null);
+            return _gameSetupHandler.GenerateInitialGrid(args);
         }
 
         public Grid IterateGame(Grid grid)

@@ -8,16 +8,14 @@ namespace Game_Of_Life
 {
     internal static class Program
     {
-        private static void Main()
+        private static void Main(string[] args)
         {
             GameSetupFactory gameSetupHandler = new GameSetupFactory();
             IRuleFactory ruleFactory = new ClassicRuleFactory();
             IOutputHandler outputHandler = new ConsoleOutPutHandler();
             
-            
             var gameController = new GameController(gameSetupHandler, ruleFactory);
-            var grid = gameController.SetupGame();
-            
+            var grid = gameController.SetupGame(args);
 
             while (true)
             {
