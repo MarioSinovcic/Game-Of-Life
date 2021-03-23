@@ -21,7 +21,7 @@ namespace Game_Of_Life.Application.Behaviours.Setup
                 }
             }
             
-            return new Grid(GridHeight, GridWidth, cellGrid);
+            return new Grid(cellGrid);
         }
         
 

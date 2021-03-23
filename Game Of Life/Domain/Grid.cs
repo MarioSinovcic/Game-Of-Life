@@ -4,10 +4,10 @@ namespace Game_Of_Life.Domain
 {
     public class Grid
     {
-        public Grid(int height, int width, Cell[,] cellGrid) //TODO: height/width input params not needed
+        public Grid(Cell[,] cellGrid)
         {
-            Height = height;
-            Width = width;
+            Height = cellGrid.GetLength(0);
+            Width = cellGrid.GetLength(1);
             CellGrid = cellGrid;
         }
 

@@ -22,7 +22,7 @@ namespace Game_Of_Life.Application.Behaviours.Setup
                 }
             }
             
-            return new Grid(gridHeight, gridWidth, cellGrid);
+            return new Grid(cellGrid);
         }
 
         private CellStatus GetCellStatus(string value)

@@ -10,30 +10,26 @@ namespace Game_Of_Life.Application.Behaviours.Setup
     {
         public Grid CreateInitialGrid(string pathName)
         {
-            if(File.Exists(pathName))
+            if (!File.Exists(pathName)) return null;
+            
+            using var r = new StreamReader(pathName);
+            var jsonInput = JsonConvert.DeserializeObject<InputInfoDTO>(r.ReadToEnd());
+
+            var gridWidth = jsonInput.InitialGrid.GetLength(1);
+            var gridHeight = jsonInput.InitialGrid.GetLength(0);
+
+            var cellGrid = new Cell[gridHeight,gridWidth];
+            
+            for (var i = 0; i < gridWidth; i++)
             {
-                using (StreamReader r = new StreamReader(pathName))
+                for (var j = 0; j < gridHeight; j++)
                 {
-                    var jsonInput = JsonConvert.DeserializeObject<InputInfoDTO>(r.ReadToEnd());
-
-                    var gridWidth = jsonInput.InitialGrid.GetLength(1);
-                    var gridHeight = jsonInput.InitialGrid.GetLength(0);
-
-                    var cellGrid = new Cell[gridHeight,gridWidth];
-            
-                    for (var i = 0; i < gridWidth; i++)
-                    {
-                        for (var j = 0; j < gridHeight; j++)
-                        {
-                            var cellStatus = GetCellStatus(jsonInput.InitialGrid[j,i], jsonInput.LiveCellChar);
-                            cellGrid[j,i] = new Cell(cellStatus);
-                        }
-                    }
-            
-                    return new Grid(gridHeight, gridWidth, cellGrid);
+                    var cellStatus = GetCellStatus(jsonInput.InitialGrid[j,i], jsonInput.LiveCellChar);
+                    cellGrid[j,i] = new Cell(cellStatus);
                 }
             }
-            return null;
+            
+            return new Grid(cellGrid);
         }
 
         private CellStatus GetCellStatus(string value, string liveCellChar)

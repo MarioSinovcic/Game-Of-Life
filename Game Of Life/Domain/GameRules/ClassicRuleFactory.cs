@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Game_Of_Life.Domain.GameRules;
 using Game_Of_Life.Domain.Interfaces;
 
-namespace Game_Of_Life.Domain
+namespace Game_Of_Life.Domain.GameRules
 {
     public class ClassicRuleFactory : IRuleFactory
     {

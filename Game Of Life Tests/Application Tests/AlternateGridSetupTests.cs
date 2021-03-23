@@ -28,8 +28,6 @@ namespace Game_Of_Life_Tests.Application_Tests
             var inputPaths = new[] {"/Users/mario.sinovcic/Documents/Acceleration/Katas/Game Of Life/Game Of Life/Game Of Life Tests/TestData/TestData1.json"};
             var result = _gameSetupFactory.GenerateInitialGrid(inputPaths);
 
-            var s = "k";
-
             Assert.AreEqual(result.CellGrid[0,0].CellStatus, CellStatus.Alive);
             Assert.AreEqual(result.CellGrid[0,1].CellStatus, CellStatus.Dead);
         }
@@ -37,7 +35,7 @@ namespace Game_Of_Life_Tests.Application_Tests
         [Test]
         public void ShouldRandomGridByDefault()
         {
-            var inputPaths = new string[] { };
+            var inputPaths = System.Array.Empty<string>();
             
             var result = _gameSetupFactory.GenerateInitialGrid(inputPaths);
 

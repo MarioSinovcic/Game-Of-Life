@@ -3,6 +3,7 @@ using Game_Of_Life.Application.Behaviours.Setup;
 using Game_Of_Life.Application.Interfaces;
 using Game_Of_Life.Domain;
 using Game_Of_Life.Domain.Enums;
+using Game_Of_Life.Domain.GameRules;
 using NUnit.Framework;
 
 namespace Game_Of_Life_Tests.Application_Tests.GameOfLifeRules
