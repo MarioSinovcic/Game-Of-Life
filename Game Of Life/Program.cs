@@ -1,6 +1,5 @@
 ﻿using Game_Of_Life.Adapters;
 using Game_Of_Life.Application.Behaviours.Setup;
-using Game_Of_Life.Domain;
 using Game_Of_Life.Domain.GameRules;
 using Game_Of_Life.Domain.Interfaces;
 using Game_Of_Life.Port;
