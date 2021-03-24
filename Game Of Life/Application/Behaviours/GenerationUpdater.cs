@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Game_Of_Life.Domain;
 using Game_Of_Life.Domain.Enums;
@@ -7,11 +8,11 @@ namespace Game_Of_Life.Application.Behaviours
 {
     public class GenerationUpdater
     {
-        private readonly IRuleFactory _ruleFactory;
+        private readonly IEnumerable<ISurvivalCondition> _ruleList;
 
-        public GenerationUpdater(IRuleFactory ruleFactory)
+        public GenerationUpdater(IEnumerable<ISurvivalCondition> ruleList)
         {
-            _ruleFactory = ruleFactory;
+            _ruleList = ruleList;
         }
 
         public Grid CreateNewGeneration(Grid grid)
@@ -30,9 +31,7 @@ namespace Game_Of_Life.Application.Behaviours
 
         private CellStatus EvaluateRules(Grid grid, int y, int x)
         {
-            var rules = _ruleFactory.GetRules();
-
-            if (rules.Any(rule => rule.Evaluate(grid, y, x)))
+            if (_ruleList.Any(rule => rule.Evaluate(grid, y, x)))
             {
                 return grid.CellGrid[y, x].FlippedCellStatus();
             }

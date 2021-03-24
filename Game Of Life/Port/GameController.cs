@@ -13,7 +13,7 @@ namespace Game_Of_Life.Port
         public GameController(GameSetupFactory gameSetupHandler, IRuleFactory ruleFactory)
         {
             _gameSetupHandler = gameSetupHandler;
-            _generationUpdater = new GenerationUpdater(ruleFactory);
+            _generationUpdater = new GenerationUpdater(ruleFactory.GetRules());
         }
 
         public Grid SetupGame()
