@@ -2,6 +2,6 @@ namespace Game_Of_Life.Domain.Interfaces
 {
     public interface IRule
     {
-        bool EvaluateRule(Grid grid, int y, int x);
+        bool Evaluate(Grid grid, int y, int x);
     }
 }

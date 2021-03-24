@@ -32,7 +32,7 @@ namespace Game_Of_Life.Application.Behaviours
         {
             var rules = _ruleFactory.GetRules();
 
-            if (rules.Any(rule => rule.EvaluateRule(grid, y, x)))
+            if (rules.Any(rule => rule.Evaluate(grid, y, x)))
             {
                 return grid.CellGrid[y, x].FlippedCellStatus();
             }

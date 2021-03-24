@@ -25,8 +25,8 @@ namespace Game_Of_Life.Domain
             }
         }
 
-        public int Height { get; protected set; }
-        public int Width { get; protected set; }
+        public int Height { get; }
+        public int Width { get; }
 
         public Cell[,] CellGrid { get; set; }
 

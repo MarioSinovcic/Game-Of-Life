@@ -5,7 +5,7 @@ namespace Game_Of_Life.Domain.GameRules
 {
     public class RevivalRule : IRule
     {
-        public bool EvaluateRule(Grid grid, int y, int x)
+        public bool Evaluate(Grid grid, int y, int x)
         {
             var currentCell = grid.CellGrid[y, x];
             var aliveNeighbours = grid.GetAliveNeighbours(y, x);
