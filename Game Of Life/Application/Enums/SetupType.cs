@@ -1,4 +1,9 @@
-$HEADER$namespace $NAMESPACE$
+namespace Game_Of_Life.Application.Enums
 {
-  public enum $ENUM$ {$END$}
+    public enum SetupType
+    {
+        Random,
+        PathName,
+        StringInput
+    }
 }

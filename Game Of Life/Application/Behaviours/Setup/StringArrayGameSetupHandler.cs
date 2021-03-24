@@ -6,10 +6,17 @@ namespace Game_Of_Life.Application.Behaviours.Setup
 {
     public class StringArrayGameSetupHandler : IGameSetup
     {
-        public Grid CreateInitialGrid(string [,] firstGeneration)
+        private string[,] _firstGeneration;
+
+        public StringArrayGameSetupHandler(string[,] firstGeneration)
         {
-            var gridWidth = firstGeneration.GetLength(1);
-            var gridHeight = firstGeneration.GetLength(0);
+            _firstGeneration = firstGeneration;
+        }
+        
+        public Grid CreateInitialGrid()
+        {
+            var gridWidth = _firstGeneration.GetLength(1);
+            var gridHeight = _firstGeneration.GetLength(0);
 
             var cellGrid = new Cell[gridHeight,gridWidth];
             
@@ -17,7 +24,7 @@ namespace Game_Of_Life.Application.Behaviours.Setup
             {
                 for (var j = 0; j < gridHeight; j++)
                 {
-                    var cellStatus = GetCellStatus(firstGeneration[j,i]);
+                    var cellStatus = GetCellStatus(_firstGeneration[j,i]);
                     cellGrid[j,i] = new Cell{CellStatus = cellStatus};
                 }
             }

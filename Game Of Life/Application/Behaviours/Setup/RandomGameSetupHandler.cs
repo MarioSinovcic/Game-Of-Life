@@ -1,10 +1,11 @@
 using System;
+using Game_Of_Life.Application.Interfaces;
 using Game_Of_Life.Domain;
 using Game_Of_Life.Domain.Enums;
 
 namespace Game_Of_Life.Application.Behaviours.Setup
 {
-    public class RandomGameSetupHandler
+    public class RandomGameSetupHandler : IGameSetup
     {
         private const int GridWidth = 8;
         private const int GridHeight = 8;

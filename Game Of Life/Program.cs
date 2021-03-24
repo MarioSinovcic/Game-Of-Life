@@ -1,5 +1,6 @@
 ﻿using Game_Of_Life.Adapters;
 using Game_Of_Life.Application.Behaviours.Setup;
+using Game_Of_Life.Application.Enums;
 using Game_Of_Life.Domain.GameRules;
 using Game_Of_Life.Domain.Interfaces;
 using Game_Of_Life.Port;
@@ -10,12 +11,12 @@ namespace Game_Of_Life
     {
         private static void Main(string[] args)
         {
-            var gameSetupHandler = new GameSetupFactory();
+            var gameSetupHandler = new GameSetupFactory(SetupType.Random);
             var ruleFactory = new ClassicRuleFactory();
             var outputHandler = new ConsoleOutPutHandler();
 
             var gameController = new GameController(gameSetupHandler, ruleFactory);
-            var grid = gameController.SetupGame(args);
+            var grid = gameController.SetupGame();
 
             while (true)
             {

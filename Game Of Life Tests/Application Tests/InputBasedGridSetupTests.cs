@@ -15,18 +15,13 @@ namespace Game_Of_Life_Tests.Application_Tests
             new [,]{{"o", "o", "o"}, {"x", "o", "x"}, {"o", "o", "o"}},  //case 2
             new [,]{{"o", "o", "o"}, {null, null, null}, {"o", "o", "o"}},   //case 3
             new [,]{{"o", "o", "o", "x"}, {"o", "o", "o", "x"}, {"o", "o", "i", ""}}   //case 4
-        }; 
-        
-        [SetUp]
-        public void Setup()
-        { 
-            _gameSetupHandler = new StringArrayGameSetupHandler();
-        }
-        
+        };
+
         [TestCaseSource(nameof(InitialGenerations))]
         public void ShouldCreateAGridWithTheCorrectDimensions(string[,] initialGenerations)
         {
-            var result = _gameSetupHandler.CreateInitialGrid(initialGenerations);
+            _gameSetupHandler = new StringArrayGameSetupHandler(initialGenerations);
+            var result = _gameSetupHandler.CreateInitialGrid();
 
             Assert.AreEqual(initialGenerations.GetLength(1), result.Width);
             Assert.AreEqual(initialGenerations.GetLength(0), result.Height);
@@ -36,7 +31,8 @@ namespace Game_Of_Life_Tests.Application_Tests
         public void ShouldCreateAGridWithTheCorrectNumberOfCells(string[,] initialGenerations)
         {
             var expected = initialGenerations.GetLength(0) * initialGenerations.GetLength(1);
-            var result = _gameSetupHandler.CreateInitialGrid(initialGenerations);
+            _gameSetupHandler = new StringArrayGameSetupHandler(initialGenerations);
+            var result = _gameSetupHandler.CreateInitialGrid();
             
             Assert.AreEqual(expected, result.CellGrid.Length);
         }
@@ -45,7 +41,8 @@ namespace Game_Of_Life_Tests.Application_Tests
         public void ShouldCreateAGridWithTheAccurateCellStatuses()
         {
             var initialGeneration = new[,] {{"o", "o", "o"}, {"x", "o", "x"}, {"o", "o", "o"}};
-            var result = _gameSetupHandler.CreateInitialGrid(initialGeneration);
+            _gameSetupHandler = new StringArrayGameSetupHandler(initialGeneration);
+            var result = _gameSetupHandler.CreateInitialGrid();
 
             Assert.AreEqual(CellStatus.Dead, result.CellGrid[0,0].CellStatus);
             Assert.AreEqual(CellStatus.Alive, result.CellGrid[1,0].CellStatus);
@@ -58,7 +55,8 @@ namespace Game_Of_Life_Tests.Application_Tests
         public void ShouldCreateAGridWithAllCellStatusesAlive()
         {
             var initialGeneration = new[,] {{"x", "x", "x"}, {"x", "x", "x"}, {"x", "x", "x"}};
-            var result = _gameSetupHandler.CreateInitialGrid(initialGeneration);
+            _gameSetupHandler = new StringArrayGameSetupHandler(initialGeneration);
+            var result = _gameSetupHandler.CreateInitialGrid();
 
             Assert.AreEqual(CellStatus.Alive, result.CellGrid[0, 0].CellStatus);
             Assert.AreEqual(CellStatus.Alive, result.CellGrid[0, 1].CellStatus);
@@ -75,7 +73,8 @@ namespace Game_Of_Life_Tests.Application_Tests
         public void ShouldCreateAGridWithTheAccurateCellStatusesOnUnevenYAxisBoard()
         {
             var initialGeneration = new[,] {{"o", "o", "o", "x"}, {"o", "o", "o", "o"}, {"x", "o", "x", "o"}};
-            var result = _gameSetupHandler.CreateInitialGrid(initialGeneration);
+            _gameSetupHandler = new StringArrayGameSetupHandler(initialGeneration);
+            var result = _gameSetupHandler.CreateInitialGrid();
 
             Assert.AreEqual(CellStatus.Alive, result.CellGrid[0,3].CellStatus);
             Assert.AreEqual(CellStatus.Dead, result.CellGrid[1,0].CellStatus);
@@ -88,7 +87,8 @@ namespace Game_Of_Life_Tests.Application_Tests
         public void ShouldCreateAGridWithTheAccurateCellStatusesOnUnevenXAxisBoard()
         {
             var initialGeneration = new[,] {{"o", "o"}, {"o", "o"}, {"x", "o"}, {"o", "o"}, {"o", "x"}};
-            var result = _gameSetupHandler.CreateInitialGrid(initialGeneration);
+            _gameSetupHandler = new StringArrayGameSetupHandler(initialGeneration);
+            var result = _gameSetupHandler.CreateInitialGrid();
 
             Assert.AreEqual(CellStatus.Dead, result.CellGrid[0,1].CellStatus);
             Assert.AreEqual(CellStatus.Dead, result.CellGrid[1,0].CellStatus);

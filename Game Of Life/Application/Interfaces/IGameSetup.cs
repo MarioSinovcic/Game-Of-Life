@@ -4,6 +4,6 @@ namespace Game_Of_Life.Application.Interfaces
 {
     public interface IGameSetup
     {
-        public Grid CreateInitialGrid(string[,] firstGeneration);
+        public Grid CreateInitialGrid();
     }
 }

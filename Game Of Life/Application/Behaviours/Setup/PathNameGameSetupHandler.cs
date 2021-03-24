@@ -1,18 +1,26 @@
 using System.IO;
 using Game_Of_Life.Application.Behaviours.Setup.DTOs;
+using Game_Of_Life.Application.Interfaces;
 using Game_Of_Life.Domain;
 using Game_Of_Life.Domain.Enums;
 using Newtonsoft.Json;
 
 namespace Game_Of_Life.Application.Behaviours.Setup
 {
-    public class PathNameGameSetupHandler
+    public class PathNameGameSetupHandler :IGameSetup
     {
-        public Grid CreateInitialGrid(string pathName)
+        private string _pathName;
+
+        public PathNameGameSetupHandler(string pathName)
         {
-            if (!File.Exists(pathName)) return null;
+            _pathName = pathName;
+        }
+        
+        public Grid CreateInitialGrid()
+        {
+            if (!File.Exists(_pathName)) return null;
             
-            using var r = new StreamReader(pathName);
+            using var r = new StreamReader(_pathName);
             var jsonInput = JsonConvert.DeserializeObject<InputInfoDTO>(r.ReadToEnd());
 
             var gridWidth = jsonInput.InitialGrid.GetLength(1);
