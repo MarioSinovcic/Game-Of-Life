@@ -3,7 +3,7 @@ using Game_Of_Life.Domain.Interfaces;
 
 namespace Game_Of_Life.Domain.GameRules
 {
-    public class RevivalRule : IRule
+    public class RevivalSurvivalCondition : ISurvivalCondition
     {
         public bool Evaluate(Grid grid, int y, int x)
         {

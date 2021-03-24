@@ -32,6 +32,11 @@ namespace Game_Of_Life.Domain
 
         public int GetAliveNeighbours(int y, int x)
         {
+            // if (y >= Height || x >= Width)
+            // {
+            //     return null;
+            // }
+            
             var aliveNeighbours = 0;
             if (CellGrid[y,x].CellStatus.Equals(CellStatus.Alive))
             {

@@ -6,25 +6,25 @@ namespace Game_Of_Life.Domain.GameRules
 {
     public class ClassicRuleFactory : IRuleFactory
     {
-        private IEnumerable<IRule> _rules;
+        private IEnumerable<ISurvivalCondition> _rules;
         
         public ClassicRuleFactory()
         {
-            _rules = Enumerable.Empty<IRule>();
+            _rules = Enumerable.Empty<ISurvivalCondition>();
             PopulateRulesList();
         }
 
-        public IEnumerable<IRule> GetRules()
+        public IEnumerable<ISurvivalCondition> GetRules()
         {
             return _rules;
         }
 
         private void PopulateRulesList()
         {
-            var overPopulationRule = new OverpopulationRule();
-            var underpopulationRule = new UnderpopulationRule();
-            var revivalRule = new RevivalRule();
-            _rules = new List<IRule>{overPopulationRule, underpopulationRule, revivalRule};
+            var overPopulationRule = new OverpopulationSurvivalCondition();
+            var underpopulationRule = new UnderpopulationSurvivalCondition();
+            var revivalRule = new RevivalSurvivalCondition();
+            _rules = new List<ISurvivalCondition>{overPopulationRule, underpopulationRule, revivalRule};
         }
     }
 }

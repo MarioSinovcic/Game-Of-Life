@@ -3,7 +3,7 @@ using Game_Of_Life.Domain.Interfaces;
 
 namespace Game_Of_Life.Domain.GameRules
 {
-    public class OverpopulationRule : IRule
+    public class OverpopulationSurvivalCondition : ISurvivalCondition
     {
         public bool Evaluate(Grid grid, int y, int x)
         {
