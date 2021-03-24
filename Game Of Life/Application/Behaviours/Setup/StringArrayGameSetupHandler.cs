@@ -18,7 +18,7 @@ namespace Game_Of_Life.Application.Behaviours.Setup
                 for (var j = 0; j < gridHeight; j++)
                 {
                     var cellStatus = GetCellStatus(firstGeneration[j,i]);
-                    cellGrid[j,i] = new Cell(cellStatus);
+                    cellGrid[j,i] = new Cell{CellStatus = cellStatus};
                 }
             }
             

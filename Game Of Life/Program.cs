@@ -11,8 +11,8 @@ namespace Game_Of_Life
         private static void Main(string[] args)
         {
             var gameSetupHandler = new GameSetupFactory();
-            IRuleFactory ruleFactory = new ClassicRuleFactory();
-            IOutputHandler outputHandler = new ConsoleOutPutHandler();
+            var ruleFactory = new ClassicRuleFactory();
+            var outputHandler = new ConsoleOutPutHandler();
 
             var gameController = new GameController(gameSetupHandler, ruleFactory);
             var grid = gameController.SetupGame(args);

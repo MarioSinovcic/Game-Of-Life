@@ -20,7 +20,7 @@ namespace Game_Of_Life.Domain
             {
                 for (var j = 0; j < height; j++)
                 {
-                    CellGrid[j,i] = new Cell(CellStatus.Dead);
+                    CellGrid[j,i] = new Cell{CellStatus = CellStatus.Dead};
                 }
             }
         }
@@ -28,7 +28,7 @@ namespace Game_Of_Life.Domain
         public int Height { get; }
         public int Width { get; }
 
-        public Cell[,] CellGrid { get; set; }
+        public Cell[,] CellGrid { get; }
 
         public int GetAliveNeighbours(int y, int x)
         {

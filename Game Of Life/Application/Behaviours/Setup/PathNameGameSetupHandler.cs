@@ -25,7 +25,7 @@ namespace Game_Of_Life.Application.Behaviours.Setup
                 for (var j = 0; j < gridHeight; j++)
                 {
                     var cellStatus = GetCellStatus(jsonInput.InitialGrid[j,i], jsonInput.LiveCellChar);
-                    cellGrid[j,i] = new Cell(cellStatus);
+                    cellGrid[j,i] = new Cell{CellStatus = cellStatus};
                 }
             }
             
