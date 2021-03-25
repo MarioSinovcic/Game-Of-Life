@@ -1,3 +1,4 @@
+using System;
 using Game_Of_Life.Application.Behaviours;
 using Game_Of_Life.Application.Behaviours.Setup;
 using Game_Of_Life.Application.Interfaces;
@@ -60,5 +61,15 @@ namespace Game_Of_Life_Tests.Domain_Tests
             Assert.AreEqual(grid.GetAliveNeighbours(1 ,3), 2);
         }
 
+        [Test]
+        public void ShouldThrowErrorIfInputIsOutOfBounds()
+        {
+            var initialGeneration = new[,] {{"o", "o", "o"}, {"o", "x", "o"}, {"o", "o", "o"}};
+            _gameSetupHandler = new StringArrayGameSetupHandler(initialGeneration);
+            var grid = _gameSetupHandler.CreateInitialGrid();
+
+            Assert.Throws<IndexOutOfRangeException>(() => grid.GetAliveNeighbours(2 ,3));
+        }
+        
     }
 }
