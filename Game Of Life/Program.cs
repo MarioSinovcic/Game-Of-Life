@@ -11,11 +11,10 @@ namespace Game_Of_Life
     {
         private static void Main(string[] args)
         {
-            var gameSetupHandler = new GameSetupFactory(SetupType.Random);
             var ruleFactory = new ClassicRuleFactory();
             var outputHandler = new ConsoleOutPutHandler();
 
-            var gameController = new GameController(gameSetupHandler, ruleFactory);
+            var gameController = new GameController(ruleFactory);
             var grid = gameController.SetupGame();
 
             while (true)

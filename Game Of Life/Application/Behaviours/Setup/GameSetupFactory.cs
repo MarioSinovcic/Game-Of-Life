@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Game_Of_Life.Application.Enums;
 using Game_Of_Life.Application.Interfaces;
 using Game_Of_Life.Domain;
@@ -11,43 +12,47 @@ namespace Game_Of_Life.Application.Behaviours.Setup
         private static readonly RandomGameSetupHandler RandomGameSetupHandler = new RandomGameSetupHandler();
         private static PathNameGameSetupHandler PathNameGameSetupHandler;
         private static StringArrayGameSetupHandler StringArrayGameSetupHandler;
-
-        private Dictionary<SetupType, IGameSetup> _setupDict = new Dictionary<SetupType, IGameSetup>()
+        
+        private static Dictionary<SetupType, IGameSetup> _setupDict = new Dictionary<SetupType, IGameSetup>()
         {
             {SetupType.Random, RandomGameSetupHandler},
             {SetupType.PathName, RandomGameSetupHandler},
             {SetupType.StringInput, StringArrayGameSetupHandler}
         };
-
-        private readonly SetupType _setupType;
         
-        public GameSetupFactory(SetupType setupType)
+        public static Grid CreateGrid(SetupType setupType)
         {
-            _setupType = setupType;
+            return GenerateInitialGrid(setupType);
         }
         
-        public GameSetupFactory(SetupType setupType, string[,] initArray)
+        public static Grid CreateGridFromArray(SetupType setupType, string[,] initArray)
         {
-            _setupType = setupType;
-            _setupDict[SetupType.PathName] = new StringArrayGameSetupHandler(initArray);
+            _setupDict[SetupType.StringInput] = new StringArrayGameSetupHandler(initArray);
+            return GenerateInitialGrid(setupType);
         }
 
-        public GameSetupFactory(SetupType setupType, string pathname)
+        public static Grid CreateGameFromJsonFile(SetupType setupType, string pathname) //should take in a string of json
         {
-            _setupType = setupType;
-            if (string.IsNullOrEmpty(pathname))
+            if (string.IsNullOrEmpty(pathname) || string.IsNullOrWhiteSpace(pathname))
             {
-                _setupDict[SetupType.PathName] = new RandomGameSetupHandler();
+                throw new ApplicationException("Invalid path");
             }
-            else
+            
+            try
             {
-                _setupDict[SetupType.PathName] = new PathNameGameSetupHandler(pathname);
+                File.Exists(pathname); 
+                _setupDict[SetupType.PathName] = new PathNameGameSetupHandler(pathname); //ui should handle reading json
+                return GenerateInitialGrid(setupType);
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException("Invalid path", e);
             }
         }
 
-        public Grid GenerateInitialGrid()
+        private static Grid GenerateInitialGrid(SetupType setupType)
         {
-            return _setupDict[_setupType].CreateInitialGrid();
+            return _setupDict[setupType].CreateInitialGrid();
         }
     }
 }

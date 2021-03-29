@@ -1,5 +1,4 @@
 using System;
-using Game_Of_Life.Application.Behaviours;
 using Game_Of_Life.Application.Behaviours.Setup;
 using Game_Of_Life.Application.Interfaces;
 using NUnit.Framework;
