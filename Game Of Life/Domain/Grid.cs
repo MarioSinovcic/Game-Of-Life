@@ -1,6 +1,5 @@
 using System;
 using Game_Of_Life.Domain.Enums;
-using NUnit.Framework;
 
 namespace Game_Of_Life.Domain
 {
@@ -13,14 +12,15 @@ namespace Game_Of_Life.Domain
             CellGrid = cellGrid;
         }
 
-        public Grid(int height, int width)
+        public Grid(Grid grid) //copy constructor
         {
-            Height = height;
-            Width = width;
-            CellGrid = new Cell[height,width];
-            for (var i = 0; i < width; i++)
+            Height = grid.Height;
+            Width = grid.Width;
+
+            CellGrid = new Cell[Height,Width];
+            for (var i = 0; i < Width; i++)
             {
-                for (var j = 0; j < height; j++)
+                for (var j = 0; j < Height; j++)
                 {
                     CellGrid[j,i] = new Cell{CellStatus = CellStatus.Dead};
                 }
@@ -49,9 +49,9 @@ namespace Game_Of_Life.Domain
             {
                 for (var j = -1; j < 2; j++)
                 {
-                    var X = (x + i + Width) % Width;
-                    var Y = (y + j + Height) % Height;
-                    if (CellGrid[Y,X].CellStatus.Equals(CellStatus.Alive))
+                    var xcoord = (x + i + Width) % Width;
+                    var ycoord = (y + j + Height) % Height;
+                    if (CellGrid[ycoord,xcoord].CellStatus.Equals(CellStatus.Alive))
                     {
                         aliveNeighbours++;
                     }

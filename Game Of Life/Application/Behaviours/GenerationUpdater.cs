@@ -17,7 +17,7 @@ namespace Game_Of_Life.Application.Behaviours
 
         public Grid CreateNewGeneration(Grid grid)
         {
-            var newGeneration = new Grid(grid.Height, grid.Width);
+            var newGeneration = new Grid(grid);
 
             for (var i = 0; i < grid.Width; i++)
             {

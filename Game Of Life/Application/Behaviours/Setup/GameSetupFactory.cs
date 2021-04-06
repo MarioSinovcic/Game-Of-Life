@@ -10,14 +10,13 @@ namespace Game_Of_Life.Application.Behaviours.Setup
     public class GameSetupFactory
     {
         private static readonly RandomGameSetupHandler RandomGameSetupHandler = new RandomGameSetupHandler();
-        private static PathNameGameSetupHandler PathNameGameSetupHandler;
-        private static StringArrayGameSetupHandler StringArrayGameSetupHandler;
+        private static StringArrayGameSetupHandler _stringArrayGameSetupHandler;
         
         private static Dictionary<SetupType, IGameSetup> _setupDict = new Dictionary<SetupType, IGameSetup>()
         {
             {SetupType.Random, RandomGameSetupHandler},
             {SetupType.PathName, RandomGameSetupHandler},
-            {SetupType.StringInput, StringArrayGameSetupHandler}
+            {SetupType.StringInput, _stringArrayGameSetupHandler}
         };
         
         public static Grid CreateGrid(SetupType setupType)
@@ -33,7 +32,7 @@ namespace Game_Of_Life.Application.Behaviours.Setup
 
         public static Grid CreateGameFromJsonFile(SetupType setupType, string pathname) //should take in a string of json
         {
-            if (string.IsNullOrEmpty(pathname) || string.IsNullOrWhiteSpace(pathname))
+            if (string.IsNullOrEmpty(pathname))
             {
                 throw new ApplicationException("Invalid path");
             }
